@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'pages',
     'listings',
     'realtors',
+    'django.contrib.humanize',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +144,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # MEDIA FOLDER SETTINGS
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
