@@ -21,7 +21,7 @@ def index(request):
 
 
     }
-    return render(request, '../templates/home.html', context)
+    return render(request, 'pages/home.html', context)
 
 
 def about(request):
@@ -31,4 +31,4 @@ def about(request):
         'realtors': realtors
     }
 
-    return render(request, '../templates/about.html', context)
+    return render(request, 'pages/about.html', context)

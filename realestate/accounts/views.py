@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import auth
 from django.contrib import messages
+from contacts.models import Contact
 
 # Create your views here.
 def register(request):
@@ -68,11 +69,19 @@ def login_view(request):
     else:
         return render(request, 'accounts/login.html')
 
-def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+
 
 def logout_view(request):
     if request.method == "POST":
         auth.logout(request)
         messages.success(request, 'you are logged out')
         return redirect('index')
+
+
+def dashboard(request):
+    user_contacts = Contact.objects.order_by('-contact_date').filter(user_id=request.user.id)
+
+    context = {
+        'contacts': user_contacts
+    }
+    return render(request, 'accounts/dashboard.html', context)
